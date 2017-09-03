@@ -1,0 +1,16 @@
+import { Injectable } from '@angular/core';
+import { Question } from '../models/question';
+
+import { QUESTIONS } from './questions';
+
+@Injectable()
+export class QuestionsService {
+
+  constructor() { }
+
+  getQuestions() : Promise<Question[]>{
+    return Promise.resolve(QUESTIONS);
+  }
+
+  
+}
