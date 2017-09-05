@@ -1,5 +1,5 @@
-import { Question } from '../models/question';
-import { Answer } from '../models/answer';
+import { Question } from '../app/shared/models/question'
+import { Answer } from '../app/shared/models/answer';
 
 export const QUESTIONS : Question[] = [
     {
