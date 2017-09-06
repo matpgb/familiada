@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { QuestionsService } from '../shared/services/questions.service';
+import { SoundAlertService } from '../shared/services/sound-alert.service';
 import { Question } from '../shared/models/question';
 import { Team } from '../shared/models/team';
 
@@ -10,12 +11,15 @@ import { Subscription } from 'rxjs/Subscription';
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
-  providers: [ QuestionsService ]
+  providers: [ QuestionsService, SoundAlertService ]
 })
 @Injectable()
 export class QuestionsComponent implements OnInit {
 
-  constructor( private questionsService : QuestionsService) { }
+  constructor( 
+    private questionsService : QuestionsService,
+    private soundAlertService : SoundAlertService
+  ) { }
 
   ngOnInit() { 
     this.questionsService.getQuestions().then( q => {
@@ -48,9 +52,10 @@ export class QuestionsComponent implements OnInit {
     setTimeout( () => { 
       this.currentQuestion.answers[index].isVoteVisible = !this.currentQuestion.answers[index].isVoteVisible;
       this.countPoints();
+      this.soundAlertService.goodAnswer();
       },
       Math.floor(Math.random() * 2000) + 100  
-    );
+    );    
   }
 
   minorLoss(team : string) : void {
@@ -62,6 +67,8 @@ export class QuestionsComponent implements OnInit {
         this.teamB.addMinorLoss();
         break;
     }
+
+    this.soundAlertService.badAnswer();
   }
 
   majorLoss(team : string) : void {
@@ -73,6 +80,8 @@ export class QuestionsComponent implements OnInit {
         this.teamB.toggleMinorLoss();
         break;
     }
+    
+    this.soundAlertService.badAnswer();
   }
 
   private countPoints() : void {
