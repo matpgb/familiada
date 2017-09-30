@@ -1,7 +1,7 @@
 export class Team {
     points: number = 0;
     minorLosses: boolean[] = [false, false, false];
-    majorLoss: boolean;
+    majorLoss: boolean = false;
 
     constructor() {}
 
@@ -33,7 +33,7 @@ export class Team {
         this.majorLoss = !this.majorLoss;
     }
 
-    private reset() : void {
+    reset() : void {
         this.minorLosses.forEach( (l, i) => this.minorLosses[i] = false );
         this.majorLoss = false;
     }

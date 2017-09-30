@@ -2,7 +2,9 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { QuestionsService } from '../shared/services/questions.service';
 import { SoundAlertService } from '../shared/services/sound-alert.service';
 import { Question } from '../shared/models/question';
+import { Answer } from '../shared/models/answer';
 import { Team } from '../shared/models/team';
+import { store } from '../store';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -11,7 +13,10 @@ import { Subscription } from 'rxjs/Subscription';
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
-  providers: [ QuestionsService, SoundAlertService ]
+  providers: [ QuestionsService, SoundAlertService ],
+  host: {
+    "[style.background-color]":"black" 
+  }
 })
 @Injectable()
 export class QuestionsComponent implements OnInit {
@@ -22,13 +27,33 @@ export class QuestionsComponent implements OnInit {
   ) { }
 
   ngOnInit() { 
-    this.questionsService.getQuestions().then( q => {
-      this.questions = q;
-      this.currentQuestion = q[this.currentIndex];
-    })
+    const state = store.getState();
+    let questions = this.removeEmptyAnswers( state.questions );
+    this.questions =  this.randomizePeoplesVotes( questions );
+
+    this.currentQuestion = undefined;
+
   }
 
-  nextQuestion(teamToScore) : void {
+  startIntro() {
+    this.soundAlertService.intro();
+  }
+
+  nextQuestion() : void {
+    this.points = 0;
+    this.teamA.reset();
+    this.teamB.reset();
+
+    this.currentIndex += 1;
+    this.currentQuestion = this.questions[this.currentIndex];
+
+    if ( this.currentQuestion == undefined ){
+      this.currentIndex = 0;
+      this.currentQuestion = this.questions[0];
+    }
+  }
+
+  addPoints(teamToScore : string) : void {
     switch(teamToScore){
       case 'a':
         this.teamA.points += this.points;
@@ -38,13 +63,6 @@ export class QuestionsComponent implements OnInit {
         break;
     }
     this.points = 0;
-    this.currentIndex += 1;
-    this.currentQuestion = this.questions[this.currentIndex];
-
-    if ( this.currentQuestion == undefined ){
-      this.currentIndex = 0;
-      this.currentQuestion = this.questions[0];
-    }
   }
 
   toggleAnswer( index ) : void {
@@ -94,8 +112,52 @@ export class QuestionsComponent implements OnInit {
     this.points = sum;
   }
 
+  private removeEmptyAnswers( questions : Question[] ) : Question[] {
+    let questionsTmp = [];
+    for( let i = 0 ; i < questions.length ; i++ ){
+      if ( questions[i].text == undefined || questions[i].text == '' ){
+        continue;
+      }
+
+      let answers = questions[i].answers.filter( a => { 
+        return a.text != "" && a.text != undefined ;
+      });
+
+      let q = Object.assign({}, questions[i], { answers: answers});
+      questionsTmp.push(q);
+    }
+
+    return questionsTmp;
+  }
+
+  private randomizePeoplesVotes( questions : Question[] ) : Question[] {
+    let questionsTmp = [];
+
+    for ( let i = 0 ; i < questions.length ; i++ ) {
+      let answers = questions[i].answers;
+      let peoplesVotes = Array.from({length: answers.length}, () => Math.floor(Math.random() * 100) + 1)
+      .sort();
+
+      for( let j = 0 ; j < answers.length ; j++ ){
+        answers[j] = this.setAnswerAttributes( answers[j], peoplesVotes[j] );
+      }
+
+      questionsTmp.push( Object.assign({}, questions[i], { answers: answers } ));
+    }
+
+    return questionsTmp;
+  }
+
+  private setAnswerAttributes( answer : Answer, numberOfVotes : number ){
+    answer.isVisible = false;
+    answer.isVoteVisible = false;
+    answer.numberOfVotes = numberOfVotes;
+
+    return answer;
+  }
+
   points: number = 0;
-  currentIndex = 0;
+  currentIndex = -1;
   questions: Question[];
   currentQuestion : Question;
   teamA : Team = new Team();

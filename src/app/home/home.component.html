@@ -1,0 +1,54 @@
+<md-tab-group>
+  <md-tab label="Familiada">
+    <br>
+    <div class="container">
+        <md-card>
+            <md-card-title>Home Page</md-card-title>
+          Some hello
+        </md-card>
+    </div>
+    <br>
+  </md-tab>
+  
+  <md-tab label="Pytania">
+    <br>
+    <md-horizontal-stepper [linear]="isLinear">
+      <md-step *ngFor="let item of questions; let i = index">
+        <div class="container">
+          <br>
+          <md-card>
+            <ng-template mdStepLabel>Pytanie</ng-template>
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Treść pytania" name="firstCtrl" [(ngModel)]="item.text">
+              </md-form-field>
+              <div class="col-xs-10 col-xs-offset-2">
+                  <md-form-field class="example-full-width">
+                      <input mdInput placeholder="Odpowiedź #1" name="firstCtrl" [(ngModel)]="item.answers[0].text">
+                    </md-form-field>
+                    <md-form-field class="example-full-width">
+                      <input mdInput placeholder="Odpowiedź #2" name="firstCtrl" [(ngModel)]="item.answers[1].text">
+                    </md-form-field>
+                    <md-form-field class="example-full-width">
+                      <input mdInput placeholder="Odpowiedź #3" name="firstCtrl" [(ngModel)]="item.answers[2].text">
+                    </md-form-field>
+                    <md-form-field class="example-full-width">
+                      <input mdInput placeholder="Odpowiedź #4" name="firstCtrl" [(ngModel)]="item.answers[3].text">
+                    </md-form-field>
+                    <md-form-field class="example-full-width">
+                      <input mdInput placeholder="Odpowiedź #5" name="firstCtrl" [(ngModel)]="item.answers[4].text">
+                    </md-form-field>
+              </div>
+            <div *ngIf="i < (questions.length - 1)">
+              <button md-button mdStepperNext>Przejdź do następnego pytania</button>
+            </div>
+            <div *ngIf="i == (questions.length - 1)">
+                <button md-button (click)="startGame()">Rozpocznij grę</button>
+              </div>
+          </md-card>
+          <br>
+        </div>
+      </md-step>
+    </md-horizontal-stepper>
+    <br>
+  </md-tab>
+</md-tab-group>

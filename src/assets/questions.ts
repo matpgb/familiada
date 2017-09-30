@@ -86,5 +86,14 @@ export const QUESTIONS : Question[] = [
         { id: 3, text: "Na tinderze", numberOfVotes: 40, isVisible: false, isVoteVisible: false },
         { id: 4, text: "Na Maderze", numberOfVotes: 23, isVisible: false, isVoteVisible: false }
       ]
+    },
+    {
+      id: 8,
+      text: "Powiedz, co może ochronić nas przed deszczem.",
+      answers: [
+        { id: 1, text: "Płyta nagrobkowa", numberOfVotes: 80, isVisible: false, isVoteVisible: false },
+        { id: 2, text: "Siedzenie w domu", numberOfVotes: 52, isVisible: false, isVoteVisible: false },
+        { id: 3, text: "Parasol", numberOfVotes: 21, isVisible: false, isVoteVisible: false }
+      ]
     }
 ];

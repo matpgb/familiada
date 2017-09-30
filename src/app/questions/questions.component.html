@@ -1,84 +1,93 @@
-<div class="col-xs-2">
-  <div class="lost-chances col-xs-12">  
-     <div class="col-xs-offset-5">
-      <span class="row lost-chance-mark" [hidden]="!teamA.minorLosses[0]">X</span>
-      <span class="row lost-chance-mark" [hidden]="!teamA.minorLosses[1]">X</span>
-      <span class="row lost-chance-mark" [hidden]="!teamA.minorLosses[2]">X</span>
-    </div> 
-    <div class="col-xs-offset-5">
-      <span class="row lost-chance-mark-big" [hidden]="!teamA.majorLoss">X</span>
+<div class="game-area">
+  <div class="col-xs-2">
+    <div class="lost-chances col-xs-12">  
+      <div class="col-xs-offset-5">
+        <span class="row lost-chance-mark" [hidden]="!teamA.minorLosses[0]">X</span>
+        <span class="row lost-chance-mark" [hidden]="!teamA.minorLosses[1]">X</span>
+        <span class="row lost-chance-mark" [hidden]="!teamA.minorLosses[2]">X</span>
+      </div> 
+      <div class="col-xs-offset-5">
+        <span class="row lost-chance-mark-big" [hidden]="!teamA.majorLoss">X</span>
+      </div>
     </div>
   </div>
-</div>
-<div class="col-xs-8">
-  <h1 class="question">{{currentQuestion.text}}</h1>
-  <br>
-    <ol class="col-xs-12">
-      <li *ngFor="let a of currentQuestion.answers; let i = index" 
-        (click)="toggleAnswer(i)" 
-        class="font-size-x2"
-        >
-        <div class="col-xs-11">
-          <span *ngIf="a.isVisible">{{a.text}}</span>
-          <span *ngIf="!a.isVisible">.......................................</span>
-        </div>
-        <div class="col-xs-1">
-          <span *ngIf="a.isVoteVisible">{{a.numberOfVotes}}</span>
-          <span *ngIf="!a.isVoteVisible">--</span>
-          
-        </div>
-      </li>
-    </ol>
+  <div class="col-xs-8" *ngIf="currentQuestion == undefined">
     <br>
-    <div>
-      <span class="font-size-x2 col-sm-3 col-sm-offset-9 col-xs-3 col-xs-offset-6">SUMA  {{points}}</span>
+    <br>
+    <p (click)="startIntro()" class="text-center">start</p>
+    <p class="font-size-x8 text-center" (click)="nextQuestion()">FAMILIADA</p>
+  </div>
+
+  <div class="col-xs-8" *ngIf="currentQuestion != undefined">
+    <h1 class="question" (click)="nextQuestion()">{{currentQuestion.text}}</h1>
+    <br>
+      <ol class="col-xs-12">
+        <li *ngFor="let a of currentQuestion.answers; let i = index" 
+          (click)="toggleAnswer(i)" 
+          class="font-size-x2"
+          >
+          <div class="col-xs-11">
+            <span *ngIf="a.isVisible">{{a.text}}</span>
+            <span *ngIf="!a.isVisible">.......................................</span>
+          </div>
+          <div class="col-xs-1">
+            <span *ngIf="a.isVoteVisible">{{a.numberOfVotes}}</span>
+            <span *ngIf="!a.isVoteVisible">--</span>
+            
+          </div>
+        </li>
+      </ol>
+      <br>
+      <div>
+        <span class="font-size-x2 col-sm-3 col-sm-offset-9 col-xs-3 col-xs-offset-6">SUMA  {{points}}</span>
+        
+      </div>
       
-    </div>
-    
-</div>
-<div class="col-xs-2">
-  <div class="lost-chances col-xs-12">  
-     <div class="col-xs-offset-3">
-      <span class="row lost-chance-mark" [hidden]="!teamB.minorLosses[0]">X</span>
-      <span class="row lost-chance-mark" [hidden]="!teamB.minorLosses[1]">X</span>
-      <span class="row lost-chance-mark" [hidden]="!teamB.minorLosses[2]">X</span>
-    </div> 
-    <div class="col-xs-offset-1">
-      <span class="row lost-chance-mark-big" [hidden]="!teamB.majorLoss">X</span>
-    </div>
   </div>
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-2">
-        <div class="row" (click)="nextQuestion('a')">
-          <span class="font-size-x4">{{teamA.points}}</span>
-        </div>
-        <div class="row">
-          <div class="col-xs-6" (click)="minorLoss('a')">
-            utrata
-          </div>
-          <div class="col-xs-6" (click)="majorLoss('a')">
-            d.utrata
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-2 col-xs-offset-8">
-        <div class="row" (click)="nextQuestion('b')">
-          <span class="font-size-x4">{{teamB.points}}</span>
-        </div>
-        <div class="row">
-          <div class="col-xs-6" (click)="minorLoss('b')">
-            utrata
-          </div>
-          <div class="col-xs-6" (click)="majorLoss('b')">
-            d.utrata
-          </div>
-        </div>
+  <div class="col-xs-2">
+    <div class="lost-chances col-xs-12">  
+      <div class="col-xs-offset-3">
+        <span class="row lost-chance-mark" [hidden]="!teamB.minorLosses[0]">X</span>
+        <span class="row lost-chance-mark" [hidden]="!teamB.minorLosses[1]">X</span>
+        <span class="row lost-chance-mark" [hidden]="!teamB.minorLosses[2]">X</span>
+      </div> 
+      <div class="col-xs-offset-1">
+        <span class="row lost-chance-mark-big" [hidden]="!teamB.majorLoss">X</span>
       </div>
     </div>
   </div>
-</footer>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-2">
+          <div class="row" (click)="addPoints('a')">
+            <span class="font-size-x4">{{teamA.points}}</span>
+          </div>
+          <div class="row">
+            <div class="col-xs-6" (click)="minorLoss('a')">
+              utrata
+            </div>
+            <div class="col-xs-6" (click)="majorLoss('a')">
+              d.utrata
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-2 col-xs-offset-8">
+          <div class="row" (click)="addPoints('b')">
+            <span class="font-size-x4">{{teamB.points}}</span>
+          </div>
+          <div class="row">
+            <div class="col-xs-6" (click)="minorLoss('b')">
+              utrata
+            </div>
+            <div class="col-xs-6" (click)="majorLoss('b')">
+              d.utrata
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

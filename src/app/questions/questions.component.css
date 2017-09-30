@@ -1,3 +1,33 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+/* html {
+    position: relative;
+    min-height: 100%;
+    background-color: black;
+} */
+
+.game-area {
+    /* margin-bottom: 60px; */
+    color: rgb(0, 229, 0);
+    background-image: url('../../assets/bg.jpg');
+    /* background-color: lightblue; */
+    font-family: 'DigitalFont';
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 140px;
+    line-height: 60px; /* Vertically center the text there */
+    padding-left: 50px;
+}
+  
+.container {
+    width: auto;
+    padding: 0 15px;
+}
+
 .lost-chance-mark {
     font-size: 4em;
 }
@@ -16,4 +46,8 @@
 
 .font-size-x4 {
     font-size: 4em;
+}
+
+.font-size-x8 {
+    font-size: 8em;
 }
