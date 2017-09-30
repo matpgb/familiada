@@ -136,7 +136,8 @@ export class QuestionsComponent implements OnInit {
     for ( let i = 0 ; i < questions.length ; i++ ) {
       let answers = questions[i].answers;
       let peoplesVotes = Array.from({length: answers.length}, () => Math.floor(Math.random() * 100) + 1)
-      .sort();
+        .sort( (a,b) => a - b )
+        .reverse();
 
       for( let j = 0 ; j < answers.length ; j++ ){
         answers[j] = this.setAnswerAttributes( answers[j], peoplesVotes[j] );
