@@ -26,7 +26,7 @@ export class SoundAlertService {
     return Promise.resolve();
   }
 
-  private goodAnswerSrc : string = '/assets/sounds/good.ogg';
-  private badAnswerSrc : string = '/assets/sounds/bad.ogg';
-  private introSrc : string = '/assets/sounds/intro.mp3';
+  private goodAnswerSrc : string = './assets/sounds/good.ogg';
+  private badAnswerSrc : string = './assets/sounds/bad.ogg';
+  private introSrc : string = './assets/sounds/intro.mp3';
 }

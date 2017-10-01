@@ -766,7 +766,8 @@
     "yargs-parser": "^5.0.0",
     "yeast": "^0.1.2",
     "yn": "^2.0.0",
-    "zone.js": "^0.8.17"
+    "zone.js": "^0.8.17",
+    "lodash-es": "^4.17.4"
   },
   "devDependencies": {
     "@angular/cli": "1.2.7",

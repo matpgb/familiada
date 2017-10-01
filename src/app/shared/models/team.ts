@@ -25,8 +25,13 @@ export class Team {
     }
 
     addMajorLoss() : void {
-        this.reset();
-        this.majorLoss = true;
+        if ( this.majorLoss ){
+            this.reset();
+        }
+        else {
+            this.reset();
+            this.majorLoss = true;
+        }
     }
 
     toggleMinorLoss() : void {

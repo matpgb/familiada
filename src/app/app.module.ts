@@ -24,6 +24,11 @@ import {MdButtonModule, MdCheckboxModule, MdInputModule, MdTabsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
         path: 'questions',
         component: QuestionsComponent
       },

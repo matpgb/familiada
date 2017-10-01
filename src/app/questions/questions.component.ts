@@ -92,10 +92,10 @@ export class QuestionsComponent implements OnInit {
   majorLoss(team : string) : void {
     switch(team){
       case 'a':
-        this.teamA.toggleMinorLoss();
+        this.teamA.addMajorLoss();
         break;
       case 'b':
-        this.teamB.toggleMinorLoss();
+        this.teamB.addMajorLoss();
         break;
     }
     
