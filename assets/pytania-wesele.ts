@@ -52,6 +52,19 @@ export const QUESTIONS : Question[] = [
     },
     {
       id: 5,
+      text: "Jakiej piosenki nie może zabraknąć na weselu?",
+      answers: [
+        { id: 1, text: "Jesteś szalona", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 2, text: "Cudownych rodziców mam", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 3, text: "Miała matka syna", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 4, text: "Rudy się żeni", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 5, text: "Hej sokoły", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 6, text: "Oczy zielone, Zenek Martyniuk", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 7, text: "Żono moja", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  }
+      ]
+    },
+    {
+      id: 6,
       text: "Koniec",
       answers: []
     }
