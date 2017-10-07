@@ -19,12 +19,12 @@ export const QUESTIONS : Question[] = [
       id: 2,
       text: "Bez czego nie może się odbyć tradycyjne wesele?",
       answers: [
-        { id: 1, text: "Państwa Młodych", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
-        { id: 2, text: "Gości", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
-        { id: 3, text: "Wódeczki", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
-        { id: 4, text: "Zespołu", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
-        { id: 5, text: "Rosołu", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined },
-        { id: 6, text: "Tortu", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined }
+        { id: 1, text: "Prądu", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 2, text: "Państwa Młodych", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 3, text: "Gości", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 4, text: "Wódeczki", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined  },
+        { id: 5, text: "Zespołu", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined },
+        { id: 6, text: "Rosołu", numberOfVotes: undefined, isVisible: undefined, isVoteVisible: undefined }
       ]
     },
     {
